@@ -1,0 +1,3 @@
+include ':localsearch'
+include ':app'
+rootProject.name = "BuscaLocal"
