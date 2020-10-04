@@ -5,8 +5,9 @@ import com.rcacao.localsearch.data.repository.DataResponse
 import com.rcacao.localsearch.data.repository.ProvidersRepository
 import com.rcacao.localsearch.domain.model.GetProvidersResult
 import com.rcacao.localsearch.utils.Constants
+import javax.inject.Inject
 
-class GetProvidersUseCaseImpl constructor(private val repository: ProvidersRepository) :
+class GetProvidersUseCaseImpl @Inject constructor(private val repository: ProvidersRepository) :
     GetProvidersUseCase {
 
     override suspend operator fun invoke(): GetProvidersResult {

@@ -6,8 +6,9 @@ import com.rcacao.localsearch.data.NullProviderListException
 import com.rcacao.localsearch.data.model.Provider
 import com.rcacao.localsearch.utils.JsonHelper
 import java.lang.reflect.Type
+import javax.inject.Inject
 
-class LocalDataSourceImpl constructor(private val jsonHelper: JsonHelper) : DataSource {
+class LocalDataSourceImpl @Inject constructor(private val jsonHelper: JsonHelper) : DataSource {
 
     override fun getProviders(): List<Provider> {
         val jsonString: String? = jsonHelper.getJsonDataFromAsset("providers.json")

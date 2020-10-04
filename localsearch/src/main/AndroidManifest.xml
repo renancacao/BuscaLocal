@@ -3,6 +3,7 @@
     package="com.rcacao.localsearch">
 
     <application
+        android:name="com.rcacao.localsearch.CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

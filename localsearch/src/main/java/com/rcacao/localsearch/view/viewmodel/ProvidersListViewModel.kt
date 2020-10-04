@@ -1,5 +1,6 @@
 package com.rcacao.localsearch.view.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,8 +10,10 @@ import com.rcacao.localsearch.domain.model.GetProvidersResult
 import com.rcacao.localsearch.domain.usecase.GetProvidersUseCase
 import com.rcacao.localsearch.view.model.Event
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProvidersListViewModel constructor(private val getProviderUseCase: GetProvidersUseCase): ViewModel() {
+class ProvidersListViewModel @ViewModelInject @Inject constructor(private val getProviderUseCase: GetProvidersUseCase) :
+    ViewModel() {
 
     private val mutableProviders: MutableLiveData<List<Provider>> = MutableLiveData()
     private val mutableSearchText: MutableLiveData<String> = MutableLiveData()
