@@ -1,7 +1,8 @@
-package com.rcacao.localsearch
+package com.rcacao.localsearch.view.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.rcacao.localsearch.R
 
 class ListSearchActivity : AppCompatActivity() {
 
