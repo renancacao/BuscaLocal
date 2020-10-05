@@ -41,5 +41,6 @@ dependencies {
 
     implementation project(":localsearch")
 
+    implementation 'com.google.android.material:material:1.2.1'
 
 }

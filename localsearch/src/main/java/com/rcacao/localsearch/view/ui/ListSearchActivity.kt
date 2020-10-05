@@ -23,6 +23,7 @@ class ListSearchActivity : AppCompatActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_list_search)
 
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         binding.recyclerView.adapter = adapter
 
         viewModel.providers.observe(this, Observer {
