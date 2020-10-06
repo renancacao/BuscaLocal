@@ -2,15 +2,14 @@ package com.rcacao.localsearch.view.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rcacao.localsearch.data.model.Provider
 import com.rcacao.localsearch.databinding.ItemProviderBinding
 
-class ProvidersAdapter : RecyclerView.Adapter<ProvidersAdapter.ProviderViewHolder>(), Filterable {
+class ProvidersAdapter : RecyclerView.Adapter<ProvidersAdapter.ProviderViewHolder>() {
 
-    var providers: List<Provider> = emptyList()
+    private var providers: List<Provider> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProviderViewHolder {
         val binding: ItemProviderBinding =
@@ -27,8 +26,9 @@ class ProvidersAdapter : RecyclerView.Adapter<ProvidersAdapter.ProviderViewHolde
     class ProviderViewHolder(val binding: ItemProviderBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun getFilter(): Filter {
-        TODO("Not yet implemented")
+    fun setProviders(newItems: List<Provider>) {
+        val result = DiffUtil.calculateDiff(ProviderDiffUtilCallback(this.providers, newItems))
+        result.dispatchUpdatesTo(this)
+        this.providers = newItems
     }
-
 }
