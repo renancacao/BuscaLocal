@@ -1,6 +1,6 @@
 # BuscaLocal
 
-## Exemplo de buca dentro de uma lista com dados locais
+## Exemplo de buca dentro de uma lista com dados locais (Android/Kotlin)
 
 
 - GSON
