@@ -34,12 +34,14 @@
                 app:contentInsetStart="0dp">
 
                 <EditText
+                    android:id="@+id/textSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/text_search_margin"
                     android:layout_marginEnd="@dimen/text_search_margin"
                     android:autofillHints="@string/search"
-                    android:inputType="textFilter" />
+                    android:inputType="textFilter"
+                    android:text="@{viewModel.searchText}" />
 
             </androidx.appcompat.widget.Toolbar>
 

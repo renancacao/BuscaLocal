@@ -8,13 +8,18 @@ import androidx.lifecycle.viewModelScope
 import com.rcacao.localsearch.data.model.Provider
 import com.rcacao.localsearch.domain.model.GetProvidersResult
 import com.rcacao.localsearch.domain.usecase.GetProvidersUseCase
+import com.rcacao.localsearch.domain.usecase.SearchProvidersUseCase
 import com.rcacao.localsearch.view.model.Event
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ProvidersListViewModel @ViewModelInject @Inject constructor(private val getProviderUseCase: GetProvidersUseCase) :
+class ProvidersListViewModel @ViewModelInject @Inject constructor(
+    private val getProviderUseCase: GetProvidersUseCase,
+    private val searchProvidersUseCase: SearchProvidersUseCase
+) :
     ViewModel() {
 
+    private val mutableAllProviders: MutableLiveData<List<Provider>> = MutableLiveData()
     private val mutableProviders: MutableLiveData<List<Provider>> = MutableLiveData()
     private val mutableSearchText: MutableLiveData<String> = MutableLiveData()
     private val mutableIsLoading: MutableLiveData<Boolean> = MutableLiveData()
@@ -49,11 +54,10 @@ class ProvidersListViewModel @ViewModelInject @Inject constructor(private val ge
     }
 
     private fun isLoaded(providers: List<Provider>) {
-        mutableIsError.value = false
-        mutableIsLoading.value = false
-        mutableIsLoaded.value = true
+        setupLoadedVisibility()
         mutableSearchText.value = ""
         mutableProviders.value = providers
+        mutableAllProviders.value = providers
     }
 
     private fun isError(errorMessage: String) {
@@ -61,5 +65,24 @@ class ProvidersListViewModel @ViewModelInject @Inject constructor(private val ge
         mutableIsLoading.value = false
         mutableIsLoaded.value = false
         mutableError.value = Event(errorMessage)
+    }
+
+    private fun isSearched(providers: List<Provider>) {
+        setupLoadedVisibility()
+        mutableProviders.value = providers
+    }
+
+    private fun setupLoadedVisibility() {
+        mutableIsError.value = false
+        mutableIsLoading.value = false
+        mutableIsLoaded.value = true
+    }
+
+    fun search(text: String) {
+        isLoading()
+        mutableSearchText.value = text
+        viewModelScope.launch {
+            isSearched(searchProvidersUseCase(text, mutableAllProviders.value ?: emptyList()))
+        }
     }
 }
