@@ -22,7 +22,7 @@ class GetProvidersUseCaseImplTest {
     @Test
     fun getProvidersOnSuccessReturnProvidersLoaded() {
         runBlockingTest {
-            val list: List<Provider> = listOf(Provider(), Provider())
+            val list: List<Provider> = listOf(Provider("1", "item1"), Provider("2", "item2"))
             whenever(repository.getProviders()).thenReturn(DataResponse.Success(list))
             useCase = GetProvidersUseCaseImpl(repository)
 

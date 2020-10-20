@@ -15,7 +15,7 @@ class SearchProvidersStarWithCaseSensitiveUseCaseImplTest {
     @Test
     fun searchProvidersOnTextEmptyReturnList() {
         runBlockingTest {
-            val list: List<Provider> = listOf(Provider(), Provider())
+            val list: List<Provider> = listOf(Provider("1", "item1"), Provider("2", "item2"))
 
             useCase = SearchProvidersStarWithCaseSensitiveUseCaseImpl()
             val result: List<Provider> = useCase("", list)

@@ -34,7 +34,7 @@ class ProvidersRepositoryImplTest {
     @Test
     fun getProvidersOnSuccessReturnSuccess() {
         runBlockingTest {
-            val list: List<Provider> = listOf(Provider(), Provider())
+            val list: List<Provider> = listOf(Provider("1", "item1"), Provider("2", "item2"))
             whenever(dataSource.getProviders()).thenReturn(list)
             repository = ProvidersRepositoryImpl(dataSource)
 

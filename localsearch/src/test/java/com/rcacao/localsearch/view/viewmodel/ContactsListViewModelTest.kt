@@ -40,7 +40,7 @@ class ProvidersListViewModelTest {
     @Test
     fun loadProviders_OnSuccess_returnList() {
         runBlockingTest {
-            val list: List<Provider> = listOf(Provider(), Provider())
+            val list: List<Provider> = listOf(Provider("1", "item1"), Provider("2", "item2"))
             whenever(getProvidersUseCase.invoke()).thenReturn(
                 GetProvidersResult.ProvidersLoaded(
                     list
@@ -57,7 +57,7 @@ class ProvidersListViewModelTest {
     @Test
     fun searchProviders_OnSuccess_returnList() {
         runBlockingTest {
-            val list: List<Provider> = listOf(Provider(), Provider())
+            val list: List<Provider> = listOf(Provider("1", "item1"), Provider("2", "item2"))
             whenever(searchProvidersUseCase.invoke(any(), any())).thenReturn(list)
 
             viewModel = ProvidersListViewModel(getProvidersUseCase, searchProvidersUseCase)
